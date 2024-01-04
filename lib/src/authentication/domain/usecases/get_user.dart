@@ -16,7 +16,7 @@ class GetUser implements UseCase<User, Params>{
 
 class Params extends Equatable{
   const Params({required this.id});
-  final int id;
+  final String id;
   @override
   List<Object?> get props => [id];
 

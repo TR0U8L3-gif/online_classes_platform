@@ -11,7 +11,7 @@ abstract class AuthRepository {
     required String createdAt,
   });
 
-  ResultFuture<User> getUser({required int id});
+  ResultFuture<User> getUser({required String id});
 
   ResultFuture<List<User>> getUsers();
 
