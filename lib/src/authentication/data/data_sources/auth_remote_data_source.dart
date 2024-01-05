@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:online_classes_platform/core/utils/constants.dart';
 import 'package:online_classes_platform/src/authentication/domain/entities/user.dart';
@@ -33,22 +35,64 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       "createdAt": createdAt,
     });
 
-    if(response.statusCode == 200 || response.statusCode == 201){
+    try {
+      _isResponseSuccessful(
+          response,
+          ServerException(
+            message: 'Unable to create user: ${response.statusMessage}',
+            statusCode: "${response.statusCode}",
+          ),
+          [200, 201]);
       return;
-    } else {
-      throw ServerException(message: 'Unable to create user: ${response.statusMessage}', statusCode: "${response.statusCode}");
+    } catch (e) {
+      rethrow;
     }
   }
 
   @override
-  Future<UserModel> getUser({required String id}) {
-    // TODO: implement getUser
-    throw UnimplementedError();
+  Future<UserModel> getUser({required String id}) async {
+    Response response = await _dio.get("$BASE_URL$USERS_ENDPOINT/$id");
+
+    try {
+      _isResponseSuccessful(
+          response,
+          ServerException(
+            message: 'Unable to get user: ${response.statusMessage}',
+            statusCode: "${response.statusCode}",
+          ),
+          [200, 201]);
+      return UserModel.fromMap(response.data);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
-  Future<List<UserModel>> getUsers() {
-    // TODO: implement getUsers
-    throw UnimplementedError();
+  Future<List<UserModel>> getUsers() async {
+    Response response =
+        await _dio.get("$BASE_URL$USERS_ENDPOINT");
+    try {
+      _isResponseSuccessful(
+          response,
+          ServerException(
+            message: 'Unable to get users: ${response.statusMessage}',
+            statusCode: "${response.statusCode}",
+          ),
+          [200, 201]);
+      return List<Map<String, dynamic>>.from(response.data as List)
+          .map((data) => UserModel.fromMap(data))
+          .toList();
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  void _isResponseSuccessful(Response response, ServerException exception,
+      List<int> successfulStatusCodes) {
+    if (successfulStatusCodes.contains(response.statusCode)) {
+      return;
+    } else {
+      throw exception;
+    }
   }
 }
