@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../utils/typedef.dart';
+import 'package:online_classes_platform/core/utils/typedef.dart';
 
 
 abstract class UseCase<Type,Params> {

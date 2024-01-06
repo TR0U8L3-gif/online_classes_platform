@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'exceptions.dart';
+import 'package:online_classes_platform/core/errors/exceptions.dart';
 
 abstract class Failure extends Equatable {
   const Failure({required this.message, required this.statusCode});
@@ -7,7 +7,7 @@ abstract class Failure extends Equatable {
   final String statusCode;
   final String message;
 
-  String get errorMessage => "$statusCode Error: $message";
+  String get errorMessage => '$statusCode Error: $message';
 
   @override
   List<Object?> get props => [statusCode, message];
@@ -24,5 +24,5 @@ class ServerFailure extends Failure {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure() : super(message: "No Internet Connection", statusCode: "503");
+  const NetworkFailure() : super(message: 'No Internet Connection', statusCode: '503');
 }

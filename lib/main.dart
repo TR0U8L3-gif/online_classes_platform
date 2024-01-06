@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_classes_platform/core/assets/fonts.dart';
 import 'package:online_classes_platform/core/services/dependency_injection/injection_container.dart';
 
 void main() async {
@@ -16,9 +17,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Online Classes Platform',
       theme: ThemeData(
         useMaterial3: true,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: Fonts.poppins,
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent,
+        ),
+        colorScheme:  ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const Scaffold(),
     );

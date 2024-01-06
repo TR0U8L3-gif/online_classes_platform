@@ -23,6 +23,8 @@ linter:
   # producing the lint.
   rules:
     # prefer_relative_imports: true
+    avoid_relative_lib_imports: true
+    public_member_api_docs: false
     constant_identifier_names: false
     cascade_invocations: false
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
