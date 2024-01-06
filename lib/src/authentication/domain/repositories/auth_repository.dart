@@ -7,7 +7,7 @@ abstract class AuthRepository {
 
   ResultFuture<void> createUser({
     required String name,
-    required String avatar,
+    required String? avatar,
     required String createdAt,
   });
 

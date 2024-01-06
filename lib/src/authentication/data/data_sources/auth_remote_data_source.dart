@@ -8,7 +8,7 @@ import '../models/user_model.dart';
 abstract class AuthRemoteDataSource {
   Future<void> createUser({
     required String name,
-    required String avatar,
+    required String? avatar,
     required String createdAt,
   });
 
@@ -25,13 +25,23 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> createUser(
       {required String name,
-      required String avatar,
+      required String? avatar,
       required String createdAt}) async {
-    Response response = await _dio.post("$BASE_URL$USERS_ENDPOINT", data: {
-      "name": name,
-      "avatar": avatar,
-      "createdAt": createdAt,
-    });
+
+    Response response;
+
+    if(avatar == null){
+      response = await _dio.post("$BASE_URL$USERS_ENDPOINT", data: {
+        "name": name,
+        "createdAt": createdAt,
+      });
+    } else {
+      response = await _dio.post("$BASE_URL$USERS_ENDPOINT", data: {
+        "name": name,
+        "avatar": avatar,
+        "createdAt": createdAt,
+      });
+    }
 
     try {
       _isResponseSuccessful(

@@ -18,15 +18,14 @@ class CreateUser implements UseCase<void, CreateUserParams> {
 
 class CreateUserParams extends Equatable {
   final String name;
-  final String avatar;
+  final String? avatar;
   final String createdAt;
 
   CreateUserParams({
     required this.name,
-    required String? avatar,
+    required this.avatar,
     required String? createdAt,
-  })  : avatar = avatar ?? "",
-        createdAt = createdAt ?? DateTime.now().toIso8601String();
+  })  : createdAt = createdAt ?? DateTime.now().toIso8601String();
 
   CreateUserParams.empty() : this(name: "", avatar: "", createdAt: "");
 

@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   ResultFuture<void> createUser({
       required String name,
-      required String avatar,
+      required String? avatar,
       required String createdAt,
       }) {
     return _checkInternetAndGetData<void>(() => _remoteDataSource.createUser(
