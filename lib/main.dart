@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:online_classes_platform/core/services/dependency_injection/injection_container.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupServiceLocator();
   runApp(const MyApp());
 }
 

@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:online_classes_platform/core/errors/exceptions.dart';
 import 'package:online_classes_platform/core/errors/failure.dart';
-import 'package:online_classes_platform/core/network/network_info.dart';
+import 'package:online_classes_platform/core/services/network/network_info.dart';
 import 'package:online_classes_platform/src/authentication/data/data_sources/auth_remote_data_source.dart';
 import 'package:online_classes_platform/src/authentication/data/models/user_model.dart';
 import 'package:online_classes_platform/src/authentication/data/repositories/auth_repository_impl.dart';

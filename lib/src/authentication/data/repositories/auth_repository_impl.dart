@@ -5,7 +5,7 @@ import 'package:online_classes_platform/src/authentication/data/data_sources/aut
 import 'package:online_classes_platform/src/authentication/domain/entities/user.dart';
 import 'package:online_classes_platform/src/authentication/domain/repositories/auth_repository.dart';
 import '../../../../core/errors/exceptions.dart';
-import '../../../../core/network/network_info.dart';
+import '../../../../core/services/network/network_info.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
