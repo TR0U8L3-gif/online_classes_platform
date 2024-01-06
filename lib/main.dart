@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:online_classes_platform/core/assets/app_colors.dart';
 import 'package:online_classes_platform/core/assets/fonts.dart';
-import 'package:online_classes_platform/core/services/dependency_injection/injection_container.dart';
+
+import 'package:online_classes_platform/core/services/router/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await setupServiceLocator();
   runApp(const MyApp());
 }
 
@@ -25,9 +26,9 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           color: Colors.transparent,
         ),
-        colorScheme:  ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:  ColorScheme.fromSwatch(accentColor: AppColors.primaryColor),
       ),
-      home: const Scaffold(),
+      onGenerateRoute: generateRoute,
     );
   }
 }
