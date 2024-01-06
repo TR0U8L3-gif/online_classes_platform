@@ -18,10 +18,11 @@ class AuthRepositoryImpl implements AuthRepository {
         _remoteDataSource = remoteDataSource;
 
   @override
-  ResultFuture<void> createUser(
-      {required String name,
+  ResultFuture<void> createUser({
+      required String name,
       required String avatar,
-      required String createdAt}) {
+      required String createdAt,
+      }) {
     return _checkInternetAndGetData<void>(() => _remoteDataSource.createUser(
           name: name,
           avatar: avatar,

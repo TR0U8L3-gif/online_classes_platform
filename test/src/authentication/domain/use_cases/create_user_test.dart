@@ -15,7 +15,7 @@ void main() {
     useCase = CreateUser(repository);
   });
 
-  final params = Params.empty();
+  final params = CreateUserParams.empty();
 
   test(
     'should call repository createUser()',

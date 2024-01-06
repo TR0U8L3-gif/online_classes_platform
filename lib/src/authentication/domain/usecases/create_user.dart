@@ -3,11 +3,11 @@ import 'package:online_classes_platform/core/usecase/usecase.dart';
 import 'package:online_classes_platform/core/utils/typedef.dart';
 import 'package:online_classes_platform/src/authentication/domain/repositories/auth_repository.dart';
 
-class CreateUser implements UseCase<void, Params> {
+class CreateUser implements UseCase<void, CreateUserParams> {
   const CreateUser(this._repository);
   final AuthRepository _repository;
   @override
-  ResultFuture<void> call(Params params) {
+  ResultFuture<void> call(CreateUserParams params) {
     return _repository.createUser(
       name: params.name,
       avatar: params.avatar,
@@ -16,19 +16,19 @@ class CreateUser implements UseCase<void, Params> {
   }
 }
 
-class Params extends Equatable {
+class CreateUserParams extends Equatable {
   final String name;
   final String avatar;
   final String createdAt;
 
-  Params({
+  CreateUserParams({
     required this.name,
     required String? avatar,
     required String? createdAt,
   })  : avatar = avatar ?? "",
         createdAt = createdAt ?? DateTime.now().toIso8601String();
 
-  Params.empty() : this(name: "", avatar: "", createdAt: "");
+  CreateUserParams.empty() : this(name: "", avatar: "", createdAt: "");
 
   @override
   List<Object?> get props => [name, avatar, createdAt];
