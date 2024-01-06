@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_classes_platform/core/usecase/usecase.dart';
-import 'package:online_classes_platform/core/utils/typedef.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../../../../core/utils/typedef.dart';
 
 import '../entities/user.dart';
 import '../repositories/auth_repository.dart';

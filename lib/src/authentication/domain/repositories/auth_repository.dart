@@ -1,6 +1,6 @@
 
-import 'package:online_classes_platform/core/utils/typedef.dart';
-import 'package:online_classes_platform/src/authentication/domain/entities/user.dart';
+import '../../../../core/utils/typedef.dart';
+import '../entities/user.dart';
 
 abstract class AuthRepository {
   const AuthRepository();

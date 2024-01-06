@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:online_classes_platform/core/usecase/usecase.dart';
+import '../../../../core/usecase/usecase.dart';
 
 import '../../domain/entities/user.dart';
 import '../../domain/usecases/create_user.dart';

@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import 'package:online_classes_platform/core/errors/failure.dart';
-import 'package:online_classes_platform/core/utils/typedef.dart';
-import 'package:online_classes_platform/src/authentication/data/data_sources/auth_remote_data_source.dart';
-import 'package:online_classes_platform/src/authentication/domain/entities/user.dart';
-import 'package:online_classes_platform/src/authentication/domain/repositories/auth_repository.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/utils/typedef.dart';
+import '../data_sources/auth_remote_data_source.dart';
+import '../../domain/entities/user.dart';
+import '../../domain/repositories/auth_repository.dart';
 import '../../../../core/errors/exceptions.dart';
 import '../../../../core/services/network/network_info.dart';
 

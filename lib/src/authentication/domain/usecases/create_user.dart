@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_classes_platform/core/usecase/usecase.dart';
-import 'package:online_classes_platform/core/utils/typedef.dart';
-import 'package:online_classes_platform/src/authentication/domain/repositories/auth_repository.dart';
+import '../../../../core/usecase/usecase.dart';
+import '../../../../core/utils/typedef.dart';
+import '../repositories/auth_repository.dart';
 
 class CreateUser implements UseCase<void, CreateUserParams> {
   const CreateUser(this._repository);

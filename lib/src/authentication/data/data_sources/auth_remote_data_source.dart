@@ -1,8 +1,6 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:online_classes_platform/core/utils/constants.dart';
-import 'package:online_classes_platform/src/authentication/domain/entities/user.dart';
+import '../../../../core/utils/constants.dart';
 
 import '../../../../core/errors/exceptions.dart';
 import '../models/user_model.dart';
