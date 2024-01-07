@@ -2,20 +2,16 @@ import 'package:equatable/equatable.dart';
 import 'package:online_classes_platform/core/errors/exceptions.dart';
 
 abstract class Failure extends Equatable {
-  const Failure({required this.message, required this.statusCode}) :
-  assert(
-    statusCode is String || statusCode is int,
-    "StatusCode Type must be a 'String' or 'int'",
-  );
+  const Failure({required this.message, required this.statusCode})
+      : assert(
+          statusCode is String || statusCode is int,
+          "StatusCode Type must be a 'String' or 'int'",
+        );
 
-  factory Failure.fromException({
-    required Failure serverException,
-  }) {
-    return ServerFailure(
-      message: serverException.message,
-      statusCode: serverException.statusCode,
-    );
-  }
+  Failure.fromException({
+    required AppException exception,
+  })  : message = exception.message,
+        statusCode = exception.statusCode;
 
   final String message;
   final dynamic statusCode;
@@ -28,10 +24,17 @@ abstract class Failure extends Equatable {
 
 class ServerFailure extends Failure {
   const ServerFailure({required super.message, required super.statusCode});
+
+  ServerFailure.fromException({
+    required super.exception,
+  }) : super.fromException();
 }
 
-class CacheFailure extends Failure{
+class CacheFailure extends Failure {
   const CacheFailure({required super.message, required super.statusCode});
+  CacheFailure.fromException({
+    required super.exception,
+  }) : super.fromException();
 }
 
 class NetworkFailure extends Failure {
@@ -40,4 +43,12 @@ class NetworkFailure extends Failure {
           message: 'No Internet Connection',
           statusCode: '503',
         );
+
+  NetworkFailure.fromException({
+    required super.exception,
+  }) : super.fromException();
+}
+
+class UnknownFailure extends Failure {
+  const UnknownFailure({required super.message, required super.statusCode});
 }

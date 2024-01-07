@@ -12,7 +12,6 @@ abstract class AppException extends Equatable implements Exception {
 class ServerException extends AppException {
   const ServerException({required super.message, required super.statusCode});
 }
-
 class CacheException extends AppException {
   const CacheException({required super.message, required super.statusCode});
 }

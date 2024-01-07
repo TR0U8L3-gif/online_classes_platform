@@ -13,7 +13,7 @@ void main() {
   setUp(() {
     mockInternetConnectionChecker = MockInternetConnectionChecker();
     networkInfoImpl = NetworkInfoImpl(
-        internetConnectionChecker: mockInternetConnectionChecker);
+        internetConnectionChecker: mockInternetConnectionChecker,);
   });
 
   group('is connected', () {
