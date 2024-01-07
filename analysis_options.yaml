@@ -23,6 +23,7 @@ linter:
   # producing the lint.
   rules:
     # prefer_relative_imports: true
+    void_checks: false
     avoid_relative_lib_imports: true
     public_member_api_docs: false
     constant_identifier_names: false

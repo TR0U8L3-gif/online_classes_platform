@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:online_classes_platform/core/services/network/network_info.dart';
 
 
@@ -24,6 +24,6 @@ Future<void> setupServiceLocator() async {
   //External
   //Dio
   sl.registerLazySingleton(Dio.new);
-  //Internet connection checker
-  sl.registerSingleton(InternetConnectionChecker());
+  //Internet connection checker plus
+  sl.registerSingleton(InternetConnection());
 }
