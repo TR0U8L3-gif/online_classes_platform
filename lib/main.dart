@@ -1,29 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'core/services/dependency_injection/injection_container.dart';
-import 'src/authentication/presentation/cubit/auth_cubit.dart';
-import 'src/authentication/presentation/pages/home_screen.dart';
+import 'package:online_classes_platform/core/assets/app_colors.dart';
+import 'package:online_classes_platform/core/assets/fonts.dart';
+import 'package:online_classes_platform/core/services/dependency_injection/injection_container.dart';
+import 'package:online_classes_platform/core/services/router/router.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setupServiceLocator();
+  await sl.allReady();
   runApp(const MyApp());
 }
 
+/// Widget representing the main application
 class MyApp extends StatelessWidget {
+
+  /// Constructor with optional 'key' parameter for MyApp.
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<AuthCubit>(),
-      child: MaterialApp(
-        theme: ThemeData(
-          useMaterial3: true,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MaterialApp(
+      title: 'Online Classes Platform',
+      theme: ThemeData(
+        useMaterial3: true,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        fontFamily: Fonts.poppins,
+        appBarTheme: const AppBarTheme(
+          color: Colors.transparent,
         ),
-        home: const HomeScreen(),
+        colorScheme:  ColorScheme.fromSwatch(accentColor: AppColors.primaryColor),
       ),
+      onGenerateRoute: generateRoute,
     );
   }
 }

@@ -1,39 +1,67 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
-import '../../../core/services/network/network_info.dart';
-import '../../../src/authentication/data/data_sources/auth_remote_data_source.dart';
-import '../../../src/authentication/data/repositories/auth_repository_impl.dart';
-import '../../../src/authentication/domain/repositories/auth_repository.dart';
-import '../../../src/authentication/domain/usecases/create_user.dart';
-import '../../../src/authentication/domain/usecases/get_user.dart';
-import '../../../src/authentication/domain/usecases/get_users.dart';
-import '../../../src/authentication/presentation/cubit/auth_cubit.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:online_classes_platform/core/services/network/network_info.dart';
+import 'package:online_classes_platform/src/on_boarding/data/data_sources/on_boarding_local_data_source.dart';
+import 'package:online_classes_platform/src/on_boarding/data/repositories/on_boarding_repository_impl.dart';
+import 'package:online_classes_platform/src/on_boarding/domain/repositories/on_boarding_repository.dart';
+import 'package:online_classes_platform/src/on_boarding/domain/use_cases/cache_first_timer.dart';
+import 'package:online_classes_platform/src/on_boarding/domain/use_cases/check_if_user_is_first_timer.dart';
+import 'package:online_classes_platform/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+/// GetIt Service Locator Instance
 final sl = GetIt.instance;
 
+/// Asynchronous function setting up dependency injection
 Future<void> setupServiceLocator() async {
-
-  //Src - authentication feature
-  //Cubit
-  sl.registerFactory(() => AuthCubit(getUser: sl(), getUsers: sl(), createUser: sl()));
-  //UseCase
-  sl.registerLazySingleton(() => CreateUser(sl()));
-  sl.registerLazySingleton(() => GetUser(sl()));
-  sl.registerLazySingleton(() => GetUsers(sl()));
-  //Repository
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(remoteDataSource: sl(), networkInfo: sl()));
-  //DataSource
-  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(dio: sl()));
-
-  //Services
-  //NetworkInfo
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(internetConnectionChecker: sl()));
+  final preferences = await SharedPreferences.getInstance();
 
   //External
   //Dio
-  sl.registerLazySingleton(() => Dio());
-  //Internet connection checker
-  sl.registerSingleton(InternetConnectionChecker());
+  sl.registerLazySingleton(Dio.new);
+  //Internet connection checker plus
+  sl.registerSingleton(InternetConnection());
+  //Shared Preferences
+  sl.registerSingleton<SharedPreferences>(
+    preferences,
+  );
 
+  //Services
+  //NetworkInfo
+  sl.registerLazySingleton<NetworkInfo>(
+        () => NetworkInfoImpl(internetConnectionChecker: sl()),
+  );
+
+  //Feature - OnBoarding
+  //Cubit
+  sl.registerFactory(
+    () => OnBoardingCubit(
+      cacheFirstTimer: sl(),
+      checkIfUserIsFirstTimer: sl(),
+    ),
+  );
+  //UseCase
+  sl.registerLazySingleton(
+    () => CacheFirstTimer(
+      repository: sl(),
+    ),
+  );
+  sl.registerLazySingleton(
+    () => CheckIfUserIsFirstTimer(
+      repository: sl(),
+    ),
+  );
+  //Repository
+  sl.registerLazySingleton<OnBoardingRepository>(
+    () => OnBoardingRepositoryImpl(
+      localDataSource: sl(),
+    ),
+  );
+  //DataSource
+  sl.registerLazySingleton<OnBoardingLocalDataSource>(
+    () => OnBoardingLocalDataSourceImpl(
+        preferences: sl(),
+    ),
+  );
 }
