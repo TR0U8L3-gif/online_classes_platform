@@ -1,4 +1,4 @@
-import 'package:online_classes_platform/core/enums/update_user.dart';
+import 'package:online_classes_platform/core/utils/enums/update_user.dart';
 import 'package:online_classes_platform/core/utils/typedef.dart';
 import 'package:online_classes_platform/src/auth/domain/entities/local_user.dart';
 
@@ -11,7 +11,7 @@ abstract class AuthRepository {
   ResultFuture<void> signUp({
     required String email,
     required String password,
-    required String fullName
+    required String fullName,
   });
 
   ResultFuture<void> forgotPassword({
@@ -20,7 +20,6 @@ abstract class AuthRepository {
 
   ResultFuture<void> updateUser({
     required UpdateUserAction action,
-    dynamic userData,
+    required dynamic userData,
   });
-
 }

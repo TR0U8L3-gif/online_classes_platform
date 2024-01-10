@@ -1,0 +1,12 @@
+{
+  "uid": "uid",
+  "email": "email",
+  "profilePhotoUrl": "profilePhotoUrl",
+  "bio": "bio",
+  "points": "123",
+  "fullName": "fullName",
+  "groupsId": "[groupsId]",
+  "enrolledCourses": "[enrolledCourses]",
+  "following": "[following]",
+  "followers": "[followers]"
+}

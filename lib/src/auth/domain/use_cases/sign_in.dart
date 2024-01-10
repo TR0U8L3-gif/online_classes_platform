@@ -4,13 +4,18 @@ import 'package:online_classes_platform/src/auth/domain/entities/local_user.dart
 import 'package:online_classes_platform/src/auth/domain/repositories/auth_repository.dart';
 
 class SignIn extends UseCase<LocalUser, SignInParams> {
-    SignIn({required AuthRepository repository}) : _repository = repository;
-    final AuthRepository _repository;
+  SignIn({required AuthRepository repository}) : _repository = repository;
+  final AuthRepository _repository;
 
   @override
   ResultFuture<LocalUser> call(SignInParams params) {
-    throw UnimplementedError();
+    return _repository.signIn(email: params.email, password: params.password);
   }
 }
 
-class SignInParams {}
+class SignInParams {
+  SignInParams({required this.email, required this.password});
+
+  final String email;
+  final String password;
+}

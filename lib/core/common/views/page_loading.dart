@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_classes_platform/core/extension/extensions.dart';
+import 'package:online_classes_platform/core/utils/extension/context_extensions.dart';
 
 class PageLoading extends StatelessWidget {
   const PageLoading({super.key});
@@ -8,7 +8,7 @@ class PageLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
-      child:  Center(
+      child: Center(
         child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(
             context.theme.colorScheme.secondary,

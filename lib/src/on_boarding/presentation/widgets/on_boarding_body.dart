@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_classes_platform/core/assets/app_colors.dart';
-import 'package:online_classes_platform/core/extension/extensions.dart';
+import 'package:online_classes_platform/config/assets/app_colors.dart';
+import 'package:online_classes_platform/core/utils/extension/context_extensions.dart';
 import 'package:online_classes_platform/src/on_boarding/domain/entities/page_content.dart';
 import 'package:online_classes_platform/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_classes_platform/core/assets/app_colors.dart';
-import 'package:online_classes_platform/core/assets/assets.dart';
+import 'package:online_classes_platform/config/assets/app_colors.dart';
+import 'package:online_classes_platform/config/assets/assets.dart';
 import 'package:online_classes_platform/core/common/views/page_loading.dart';
 import 'package:online_classes_platform/core/common/widgets/gradient_background.dart';
 import 'package:online_classes_platform/src/on_boarding/domain/entities/page_content.dart';
@@ -39,44 +39,44 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           }
         },
         builder: (BuildContext context, OnBoardingState state) {
-          if(state is OnBoardingUserStatus && state.isFirstTimer) {
+          if (state is OnBoardingUserStatus && state.isFirstTimer) {
             return GradientBackground(
-            imageUrl: Assets.imagesOnBoardingBackground,
-            child: Stack(
-              children: [
-                PageView(
-                  controller: pageController,
-                  children: [
-                    OnBoardingBody(pageContent: PageContent.first()),
-                    OnBoardingBody(pageContent: PageContent.second()),
-                    OnBoardingBody(pageContent: PageContent.third()),
-                  ],
-                ),
-                Align(
-                  alignment: const Alignment(0, .04),
-                  child: SmoothPageIndicator(
+              imageUrl: Assets.imagesOnBoardingBackground,
+              child: Stack(
+                children: [
+                  PageView(
                     controller: pageController,
-                    count: 3,
-                    onDotClicked: (index) {
-                      pageController.animateToPage(
-                        index,
-                        duration: const Duration(
-                          milliseconds: 400,
-                        ),
-                        curve: Curves.easeInOut,
-                      );
-                    },
-                    effect: const WormEffect(
-                      dotHeight: 12,
-                      dotWidth: 12,
-                      spacing: 48,
-                      activeDotColor: AppColors.primaryColor,
+                    children: [
+                      OnBoardingBody(pageContent: PageContent.first()),
+                      OnBoardingBody(pageContent: PageContent.second()),
+                      OnBoardingBody(pageContent: PageContent.third()),
+                    ],
+                  ),
+                  Align(
+                    alignment: const Alignment(0, .04),
+                    child: SmoothPageIndicator(
+                      controller: pageController,
+                      count: 3,
+                      onDotClicked: (index) {
+                        pageController.animateToPage(
+                          index,
+                          duration: const Duration(
+                            milliseconds: 400,
+                          ),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      effect: const WormEffect(
+                        dotHeight: 12,
+                        dotWidth: 12,
+                        spacing: 48,
+                        activeDotColor: AppColors.primaryColor,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
           }
           return const PageLoading();
         },

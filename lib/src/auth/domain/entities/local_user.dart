@@ -6,24 +6,20 @@ class LocalUser extends Equatable {
     required this.email,
     required this.points,
     required this.fullName,
-    required this.groupsId,
-    required this.enrolledCourses,
-    required this.following,
-    required this.followers,
+    this.groupsId = const [],
+    this.enrolledCourses = const [],
+    this.following = const [],
+    this.followers = const [],
     this.profilePhotoUrl,
     this.bio,
   });
 
-  factory LocalUser.empty(){
+  factory LocalUser.empty() {
     return const LocalUser(
       uid: '',
       email: '',
       points: 0,
       fullName: '',
-      groupsId: [],
-      enrolledCourses: [],
-      following: [],
-      followers: [],
     );
   }
 

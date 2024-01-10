@@ -26,7 +26,9 @@ class OnBoardingRepositoryImpl implements OnBoardingRepository {
     );
   }
 
-  ResultFuture<Type> _getResultOrFailure<Type>(Future<Type> Function() function) async {
+  ResultFuture<Type> _getResultOrFailure<Type>(
+    Future<Type> Function() function,
+  ) async {
     try {
       final result = await function();
       return Right(result);

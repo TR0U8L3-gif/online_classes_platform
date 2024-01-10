@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:online_classes_platform/core/assets/assets.dart';
+import 'package:online_classes_platform/config/assets/assets.dart';
 import 'package:online_classes_platform/core/common/widgets/gradient_background.dart';
 
 class PageUnderConstruction extends StatelessWidget {

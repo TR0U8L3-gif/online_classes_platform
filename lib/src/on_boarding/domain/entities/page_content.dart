@@ -1,9 +1,12 @@
 import 'package:equatable/equatable.dart';
-import 'package:online_classes_platform/core/assets/assets.dart';
+import 'package:online_classes_platform/config/assets/assets.dart';
 
 class PageContent extends Equatable {
-  const PageContent(
-      {required this.imageUrl, required this.title, required this.description,});
+  const PageContent({
+    required this.imageUrl,
+    required this.title,
+    required this.description,
+  });
 
   factory PageContent.first() {
     return const PageContent(
@@ -28,6 +31,7 @@ class PageContent extends Equatable {
       description: 'First platform designed by top professors',
     );
   }
+
   final String imageUrl;
   final String title;
   final String description;

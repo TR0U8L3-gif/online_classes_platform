@@ -16,7 +16,8 @@ abstract class Failure extends Equatable {
   final String message;
   final dynamic statusCode;
 
-  String get errorMessage => '$statusCode Error: $message';
+  String get errorMessage =>
+      '$statusCode ${statusCode is String ? '' : 'Error'}: $message';
 
   @override
   List<Object?> get props => [statusCode, message];
@@ -32,16 +33,17 @@ class ServerFailure extends Failure {
 
 class CacheFailure extends Failure {
   const CacheFailure({required super.message, required super.statusCode});
+
   CacheFailure.fromException({
     required super.exception,
   }) : super.fromException();
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure()
+  const NetworkFailure({String? message})
       : super(
-          message: 'No Internet Connection',
-          statusCode: '503',
+          message: message ?? 'No Internet Connection',
+          statusCode: 503,
         );
 
   NetworkFailure.fromException({
@@ -50,5 +52,9 @@ class NetworkFailure extends Failure {
 }
 
 class UnknownFailure extends Failure {
-  const UnknownFailure({required super.message, required super.statusCode});
+  const UnknownFailure({required super.message, super.statusCode = 400});
+}
+
+class InvalidInputFailure extends Failure {
+  const InvalidInputFailure({required super.message, super.statusCode = 400});
 }

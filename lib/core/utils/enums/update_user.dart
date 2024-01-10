@@ -1,9 +1,10 @@
 enum UpdateUserAction {
   email,
-  points,
-  profile,
+  password,
   profilePhotoUrl,
   bio,
+  points,
+  fullName,
   groupsId,
   enrolledCourses,
   following,
