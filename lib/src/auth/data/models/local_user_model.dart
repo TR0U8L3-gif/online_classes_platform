@@ -21,29 +21,25 @@ class LocalUserModel extends LocalUser {
       email: map['email'] as String,
       profilePhotoUrl: map['profilePhotoUrl'] as String?,
       bio: map['bio'] as String?,
-      points: InputConverter.stringToUnsignedInt(map['points'] as String).fold(
+      points: InputConverter.getInt(map['points']).fold(
         (l) => 0,
         (r) => r,
       ),
       fullName: map['fullName'] as String,
-      groupsId:
-          InputConverter.stringToList<String>(map['groupsId'] as String).fold(
+      groupsId: InputConverter.getList<String>(map['groupsId']).fold(
         (l) => [],
         (r) => r,
       ),
       enrolledCourses:
-          InputConverter.stringToList<String>(map['enrolledCourses'] as String)
-              .fold(
+          InputConverter.getList<String>(map['enrolledCourses']).fold(
         (l) => [],
         (r) => r,
       ),
-      following:
-          InputConverter.stringToList<String>(map['following'] as String).fold(
+      following: InputConverter.getList<String>(map['following']).fold(
         (l) => [],
         (r) => r,
       ),
-      followers:
-          InputConverter.stringToList<String>(map['followers'] as String).fold(
+      followers: InputConverter.getList<String>(map['followers']).fold(
         (l) => [],
         (r) => r,
       ),

@@ -4,14 +4,14 @@ import 'package:online_classes_platform/core/errors/failure.dart';
 import 'package:online_classes_platform/core/helpers/input_converter.dart';
 
 void main() {
-  group('stringToUnsignedInt', () {
+  group('getUnsignedInt', () {
     test(
       'should return an integer when string represent unsigned integer',
       () async {
         // arrange
         const str = '123';
         // act
-        final result = InputConverter.stringToUnsignedInt(str);
+        final result = InputConverter.getUnsignedInt(str);
         // assert
         expect(result, const Right<Failure, dynamic>(123));
       },
@@ -23,7 +23,7 @@ void main() {
         // arrange
         const str = '-a123';
         // act
-        final result = InputConverter.stringToUnsignedInt(str);
+        final result = InputConverter.getUnsignedInt(str);
         // assert
         expect(
           (result as Left).value,
@@ -38,7 +38,7 @@ void main() {
         // arrange
         const str = '-123';
         // act
-        final result = InputConverter.stringToUnsignedInt(str);
+        final result = InputConverter.getUnsignedInt(str);
         // assert
         expect(
           (result as Left).value,
@@ -48,14 +48,14 @@ void main() {
     );
   });
 
-  group('stringToInt', () {
+  group('getInt', () {
     test(
       'should return an integer when string represent unsigned integer',
       () async {
         // arrange
         const str = '123';
         // act
-        final result = InputConverter.stringToInt(str);
+        final result = InputConverter.getInt(str);
         // assert
         expect(result, const Right<Failure, dynamic>(123));
       },
@@ -67,7 +67,7 @@ void main() {
         // arrange
         const str = '-a123';
         // act
-        final result = InputConverter.stringToInt(str);
+        final result = InputConverter.getInt(str);
         // assert
         expect(
           (result as Left).value,
@@ -82,7 +82,7 @@ void main() {
         // arrange
         const str = '-123';
         // act
-        final result = InputConverter.stringToInt(str);
+        final result = InputConverter.getInt(str);
         // assert
         expect(result, const Right<Failure, dynamic>(-123));
       },
