@@ -12,7 +12,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
 
-  static const String routeName = '/';
+  static const String routeName = '/on-boarding';
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -36,6 +36,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Navigator.pushReplacementNamed(context, '/home');
           } else if (state is OnBoardingUserCached) {
             //TODO
+            Navigator.pushReplacementNamed(context, '/');
           }
         },
         builder: (BuildContext context, OnBoardingState state) {
