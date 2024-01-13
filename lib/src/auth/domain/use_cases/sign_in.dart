@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:online_classes_platform/core/usecase/usecase.dart';
 import 'package:online_classes_platform/core/utils/typedef.dart';
 import 'package:online_classes_platform/src/auth/domain/entities/local_user.dart';
@@ -13,9 +14,12 @@ class SignIn extends UseCase<LocalUser, SignInParams> {
   }
 }
 
-class SignInParams {
-  SignInParams({required this.email, required this.password});
+class SignInParams extends Equatable {
+  const SignInParams({required this.email, required this.password});
 
   final String email;
   final String password;
+
+  @override
+  List<Object?> get props => [email, password];
 }
