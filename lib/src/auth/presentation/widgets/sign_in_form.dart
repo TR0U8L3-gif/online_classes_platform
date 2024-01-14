@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
+import 'package:online_classes_platform/core/common/widgets/i_field.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({
@@ -18,15 +20,38 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   bool obscurePassword = true;
+
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: widget.formKey,
-        child: Column(
-          children: [
-            
-          ],
-        ),
+      key: widget.formKey,
+      child: Column(
+        children: [
+          IField(
+            controller: widget.emailController,
+            hintText: 'Email address',
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          IField(
+            controller: widget.passwordController,
+            hintText: 'Password',
+            obscureText: obscurePassword,
+            keyboardType: TextInputType.visiblePassword,
+            suffixIcon: IconButton(
+              onPressed: () => setState(() {
+                obscurePassword = !obscurePassword;
+              }),
+              icon: Icon(
+                obscurePassword ? IconlyLight.show : IconlyLight.hide,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

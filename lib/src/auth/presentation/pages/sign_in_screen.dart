@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_classes_platform/config/assets/assets.dart';
 import 'package:online_classes_platform/core/common/utils.dart';
 import 'package:online_classes_platform/core/common/widgets/gradient_background.dart';
+import 'package:online_classes_platform/core/common/widgets/rounded_button.dart';
 import 'package:online_classes_platform/core/utils/extension/context_extensions.dart';
 import 'package:online_classes_platform/src/auth/data/models/local_user_model.dart';
 import 'package:online_classes_platform/src/auth/presentation/bloc/auth_bloc.dart';
@@ -36,7 +38,7 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
+        listener: (_, state) {
           if (state is AuthError) {
             Utils.showSnackBar(context, state.message);
           } else if (state is AuthSignedIn) {
@@ -44,7 +46,7 @@ class _SignInScreenState extends State<SignInScreen> {
             Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
-        builder: (context, state) {
+        builder: (_, state) {
           return GradientBackground(
             imageUrl: Assets.imagesAuthGradientBackground,
             child: SafeArea(
@@ -73,9 +75,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         child: TextButton(
                           onPressed: () {
                             Navigator.pushReplacementNamed(
-                                context, SignUpScreen.routeName);
+                              context,
+                              SignUpScreen.routeName,
+                            );
                           },
-                          child: const Text('Register account?'),
+                          child: const Text('register account?'),
                         ),
                       ),
                     ],
@@ -84,10 +88,45 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 10,
                   ),
                   SignInForm(
-                      emailController: emailController,
-                      passwordController: passwordController,
-                      formKey: formKey,
-                ) ,
+                    emailController: emailController,
+                    passwordController: passwordController,
+                    formKey: formKey,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/forgot-password');
+                      },
+                      child: const Text('forgot password?'),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  if (state is AuthLoading)
+                    const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  else
+                    RoundedButton(
+                      label: 'Sign In',
+                      onPressed: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        FirebaseAuth.instance.currentUser?.reload();
+                        if (formKey.currentState!.validate()) {
+                          context.read<AuthBloc>().add(
+                                SignInEvent(
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim(),
+                                ),
+                              );
+                        }
+                      },
+                    ),
                 ],
               ),
             ),

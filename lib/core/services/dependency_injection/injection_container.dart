@@ -21,4 +21,4 @@ import 'package:online_classes_platform/src/on_boarding/domain/use_cases/check_i
 import 'package:online_classes_platform/src/on_boarding/presentation/cubit/on_boarding_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-part 'injection_container_impl.dart';
+part 'injection_container.main.dart';

@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:online_classes_platform/config/assets/app_colors.dart';
 import 'package:online_classes_platform/config/assets/fonts.dart';
-import 'package:online_classes_platform/core/helpers/user_provider.dart';
+import 'package:online_classes_platform/core/common/providers/user_provider.dart';
 import 'package:online_classes_platform/core/services/dependency_injection/injection_container.dart';
 import 'package:online_classes_platform/core/services/router/router.dart';
 import 'package:online_classes_platform/firebase_options.dart';

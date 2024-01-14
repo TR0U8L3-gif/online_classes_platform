@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:online_classes_platform/core/helpers/user_provider.dart';
+import 'package:online_classes_platform/core/common/providers/user_provider.dart';
 import 'package:online_classes_platform/src/auth/domain/entities/local_user.dart';
 import 'package:provider/provider.dart';
 

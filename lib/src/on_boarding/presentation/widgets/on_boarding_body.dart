@@ -61,7 +61,6 @@ class OnBoardingBody extends StatelessWidget {
                 ),
                 onPressed: () {
                   context.read<OnBoardingCubit>().cacheFirstTimer();
-                  //TODO(get started)
                 },
                 child: const Text(
                   'Get Started',
